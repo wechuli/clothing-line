@@ -4,11 +4,14 @@ body {
   font-size: 17px;
   line-height: 1.5;
   font-weight: 450;
-  font-family: "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* font-family: 'Chilanka', cursive; */
+  /* /* font-family: 'Open Sans', sans-serif; */
+  font-family: 'Livvic', sans-serif;
+  /* font-family: 'Red Hat Text', sans-serif; */
+  /* font-family: 'Indie Flower', cursive; */
+  /* font-family: 'Source Code Pro', monospace;  */
 }
 
 code {
@@ -16,7 +19,7 @@ code {
     monospace;
 }
 
-a{
+a {
   text-decoration: none;
   color: black;
 }
