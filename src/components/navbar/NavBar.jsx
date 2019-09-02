@@ -17,6 +17,10 @@ function NavBar() {
         <Link className="option" exact to="/shop">
           CONTACT
         </Link>
+
+        <Link className="option" exact to="/signin">
+          SIGN IN
+        </Link>
       </div>
     </div>
   );
