@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/crown.svg";
-import './NavBar.scss';
+import "./NavBar.scss";
+import { auth } from "../../firebase/firebase.utils";
 
-function NavBar() {
+function NavBar(props) {
+  const { currentUser } = props;
   return (
     <div className="header">
       <Link className="logo-container" exact to="/">
@@ -18,9 +20,13 @@ function NavBar() {
           CONTACT
         </Link>
 
-        <Link className="option" exact to="/signin">
-          SIGN IN
-        </Link>
+        {currentUser ? (
+          <div className="option" onClick={() => auth.signOut()}>SIGN OUT</div>
+        ) : (
+          <Link className="option" exact to="/signin">
+            SIGN IN
+          </Link>
+        )}
       </div>
     </div>
   );
