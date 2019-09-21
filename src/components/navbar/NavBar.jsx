@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import logo from "../../assets/crown.svg";
 import "./NavBar.scss";
 import { auth } from "../../firebase/firebase.utils";
+import CartIcon from "../cart-icon/CartIcon";
+import CartDropDown from "../cart-dropdown/CartDropDown";
 
 function NavBar(props) {
   const { currentUser } = props;
@@ -30,7 +32,10 @@ function NavBar(props) {
             SIGN IN
           </Link>
         )}
+        <CartIcon />
+        
       </div>
+      <CartDropDown/>
     </div>
   );
 }
