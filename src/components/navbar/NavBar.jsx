@@ -8,7 +8,7 @@ import CartIcon from "../cart-icon/CartIcon";
 import CartDropDown from "../cart-dropdown/CartDropDown";
 
 function NavBar(props) {
-  const { currentUser } = props;
+  const { currentUser, hidden } = props;
   return (
     <div className="header">
       <Link className="logo-container" to="/">
@@ -33,16 +33,16 @@ function NavBar(props) {
           </Link>
         )}
         <CartIcon />
-        
       </div>
-      <CartDropDown/>
+      {hidden ? null : <CartDropDown />}
     </div>
   );
 }
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.user.currentUser
+    currentUser: state.user.currentUser,
+    hidden: state.cart.hidden
   };
 };
 
