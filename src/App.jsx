@@ -9,7 +9,7 @@ import SignInUp from "./pages/sign-in-up/SignInUp";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { setCurrentUser } from "./redux/user/user.actions";
 import { selectCurrentUser } from "./redux/user/user.selector";
-import Checkout from "./pages/checkout/Checkout";
+import Checkout from "./pages/checkout/CheckoutPage";
 
 class App extends React.Component {
   componentDidMount() {

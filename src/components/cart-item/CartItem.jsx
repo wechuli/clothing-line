@@ -2,6 +2,7 @@ import React from "react";
 import "./CartItem.scss";
 
 const CartItem = props => {
+
   const { imageUrl, price, name, quantity } = props.item;
   return (
     <div className="cart-item">
