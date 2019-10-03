@@ -1,5 +1,7 @@
 import shopData from "../../data/shop.data";
-const INITIAL_STATE = shopData;
+const INITIAL_STATE = {
+  collections: shopData
+};
 
 const shopReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -7,6 +9,5 @@ const shopReducer = (state = INITIAL_STATE, action) => {
       return state;
   }
 };
-
 
 export default shopReducer;
