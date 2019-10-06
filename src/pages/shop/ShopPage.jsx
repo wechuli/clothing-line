@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 import CollectionOverview from "../../components/collection-overview/CollectionOverview";
-import CategoryPage from "../category/CategoryPage";
+import CollectionPage from "../collection/CollectionPage";
 
 const Shop = props => {
   const { match } = props;
@@ -10,7 +10,7 @@ const Shop = props => {
   return (
     <div className="shop-page">
       <Route exact path="/shop" component={CollectionOverview} />
-      <Route path={`${match.path}/:categoryId`} component={CategoryPage} />
+      <Route path={`${match.path}/:collectionId`} component={CollectionPage} />
     </div>
   );
 };
