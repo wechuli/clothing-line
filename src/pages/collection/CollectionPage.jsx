@@ -13,9 +13,9 @@ const CollectionPage = props => {
     <div className="collection-page">
       <h2 className="title">{title}</h2>
       <div className="items">
-        {
-          items.map(item=>(<CollectionItem key={item.id} item={item}/>))
-        }
+        {items.map(item => (
+          <CollectionItem key={item.id} item={item} />
+        ))}
       </div>
     </div>
   );
@@ -27,9 +27,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 // const mapStateToProps = (state, ownProps) => {
 //   return {
-//     collection: state.shop.collections.find(
-//       collection => collection.routeName === ownProps.match.params.collectionId
-//     )
+//     collection: state.shop.collections[ownProps.match.params.collectionId]
 //   };
 // };
 
