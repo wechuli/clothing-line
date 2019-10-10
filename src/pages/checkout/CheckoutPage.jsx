@@ -8,6 +8,7 @@ import {
 import "./CheckoutPage.scss";
 import CartItem from "../../components/cart-item/CartItem";
 import CheckoutItem from "../../components/checkout-item/CheckoutItem";
+import StripeButton from "../../components/stripe-button/StripeButton";
 
 const Checkout = props => {
   const { cartItems, total } = props;
@@ -38,6 +39,12 @@ const Checkout = props => {
       <div className="total">
         <span>TOTAL:${total}</span>
       </div>
+      <div className="test-warning">
+        * Please use the following test credit card for payments**
+        <br />
+        4242424242424242 - Exp: 01/20 - CVV: 123
+      </div>
+      <StripeButton price={total} />
     </div>
   );
 };
