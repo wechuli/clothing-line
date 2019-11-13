@@ -1,54 +1,39 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
-import {
-  firestore,
-  convertCollectionsSnapshotToMap
-} from "../../firebase/firebase.utils";
 import { connect } from "react-redux";
 import CollectionOverview from "../../components/collection-overview/CollectionOverview";
 import CollectionPage from "../collection/CollectionPage";
-import { updateCollections } from "../../redux/shop/shop.actions";
+import { fetchCollectionsStartAsync } from "../../redux/shop/shop.actions";
 import WithSpinner from "../../components/with-spinner/WithSpinner";
 
 const CollectionsOverviewWithSpinner = WithSpinner(CollectionOverview);
 const CollectionPageWithSinner = WithSpinner(CollectionPage);
 
 class Shop extends Component {
-  state = {
-    loading: true
-  };
-  unsubscribeFromSnapshot = null;
-  componentDidMount() {
-    const { updateCollections } = this.props;
-    const collectionRef = firestore.collection("collections");
 
-    collectionRef.get().then(snapshot => {
-      const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-      updateCollections(collectionsMap);
-      this.setState({ loading: false });
-    });
-    // this.unsubscribeFromSnapshot = collectionRef.onSnapshot(async snapshot => {
-    //   const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-    //   updateCollections(collectionsMap);
-    //   this.setState({ loading: false });
-    // });
+ 
+  componentDidMount() {
+
+    const {fetchCollectionsStartAsync} = this.props;
+    fetchCollectionsStartAsync();
   }
   render() {
-    const { match } = this.props;
-    const { loading } = this.state;
+    const { match,isCollectionFetching,isCollectionLoaded } = this.props;
+
     return (
+      
       <div className="shop-page">
         <Route
           exact
           path="/shop"
           render={props => (
-            <CollectionsOverviewWithSpinner isLoading={loading} {...props} />
+            <CollectionsOverviewWithSpinner isLoading={!isCollectionLoaded} {...props} />
           )}
         />
         <Route
           path={`${match.path}/:collectionId`}
           render={props => (
-            <CollectionPageWithSinner isLoading={loading} {...props} />
+            <CollectionPageWithSinner isLoading={!isCollectionLoaded} {...props} />
           )}
         />
       </div>
@@ -56,14 +41,17 @@ class Shop extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
   return {
-    updateCollections: collectionsMap =>
-      dispatch(updateCollections(collectionsMap))
+    isCollectionFetching: state.shop.isFetching,
+    isCollectionLoaded: !!state.shop.collections
   };
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(Shop);
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchCollectionsStartAsync: () => dispatch(fetchCollectionsStartAsync())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Shop);
